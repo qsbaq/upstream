@@ -16,6 +16,8 @@ var hosts = ["lib.baomitu.com", "unpkg.com"];
 
 //所有源请求完或默认超时
 upstream(hosts, function (fast, ok) {
+    //fast:最快的源
+    //ok:可用的源 数组
     console.log(fast, ok)
 });
 
@@ -30,7 +32,7 @@ upstream(hosts, function (fast, ok) {
 }, 280);
 
 
-//主机头跳转或404等情况，须请求具体的路径的情况
+//主机头跳转或404等，须请求具体路径的情况
 upstream([
     "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js",
     "https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js",
