@@ -11,6 +11,7 @@
 - 优先选择最快的源
 
 ### 使用
+- <https://www.netnr.com/run/code/4890439129232505252>
 ```
 var hosts = ["lib.baomitu.com", "unpkg.com"];
 
