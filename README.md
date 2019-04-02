@@ -12,6 +12,7 @@
 
 ### 使用
 - <https://ss.netnr.com/weather>
+- <https://ss.netnr.com/wallpaper>
 - <https://www.netnr.com/run/code/4890439129232505252>
 ```
 var hosts = ["lib.baomitu.com", "unpkg.com"];

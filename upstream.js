@@ -20,7 +20,9 @@
                 //自动补齐链接
                 host = host.trim().toLowerCase().indexOf("//") >= 0 ? host : "//" + host;
                 //发起fetch，添加成功的url（该url与hosts可能不一样），须支持跨域请求
-                fetch(host).then(res => res.ok && ok.push(res.url)).catch(() => bad++)
+                fetch(host).then(function (res) {
+                    res.ok ? ok.push(res.url) : bad++;
+                }).catch(() => bad++)
             }
             var si = setInterval(function () {
                 var isc = false, now = new Date().valueOf();
