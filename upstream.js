@@ -8,7 +8,7 @@
 (function (window) {
     var ups = function (hosts, callback, timeout) {
         window.upstreamCache = window.upstreamCache || {};
-        //10ÃëÄÚ»º´æ
+        //10ç§’å†…ç¼“å­˜
         var startTime = new Date().valueOf(), cacheKey = hosts.join(','),
             hostsCache = window.upstreamCache[cacheKey];
         if (hostsCache && startTime - hostsCache.date < 10000) {
@@ -17,20 +17,20 @@
             var ok = [], bad = 0, i = 0, len = hosts.length;
             for (; i < len;) {
                 var host = hosts[i++];
-                //×Ô¶¯²¹ÆëÁ´½Ó
+                //è‡ªåŠ¨è¡¥é½é“¾æŽ¥
                 host = host.trim().toLowerCase().indexOf("//") >= 0 ? host : "//" + host;
-                //·¢Æðfetch£¬Ìí¼Ó³É¹¦µÄurl£¨¸ÃurlÓëhosts¿ÉÄÜ²»Ò»Ñù£©£¬ÐëÖ§³Ö¿çÓòÇëÇó
+                //å‘èµ·fetchï¼Œæ·»åŠ æˆåŠŸçš„urlï¼ˆè¯¥urlä¸Žhostså¯èƒ½ä¸ä¸€æ ·ï¼‰ï¼Œé¡»æ”¯æŒè·¨åŸŸè¯·æ±‚
                 fetch(host).then(function (res) {
                     res.ok ? ok.push(res.url) : bad++;
                 }).catch(() => bad++)
             }
             var si = setInterval(function () {
                 var isc = false, now = new Date().valueOf();
-                //µ±timeoutÎª1£¬·µ»Ø×î¿ì¿ÉÓÃµÄhost
+                //å½“timeoutä¸º1ï¼Œè¿”å›žæœ€å¿«å¯ç”¨çš„host
                 if (timeout == 1 && ok.length > 0) {
                     isc = true;
                 }
-                //ËùÓÐÇëÇó½áÊø »ò ³¬Ê±£¨Ä¬ÈÏ3000ºÁÃë£©£¬·µ»Ø½á¹û
+                //æ‰€æœ‰è¯·æ±‚ç»“æŸ æˆ– è¶…æ—¶ï¼ˆé»˜è®¤3000æ¯«ç§’ï¼‰ï¼Œè¿”å›žç»“æžœ
                 var istimeout = now - startTime > ((timeout == 1 || !timeout) ? 3000 : timeout);
                 if (ok.length + bad == len || istimeout) {
                     isc = true;
